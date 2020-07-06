@@ -28,4 +28,4 @@ ctest: lib
 	# g++ -Wall -o test test.cpp -ltest -L/Users/dliptai/Work/testing/libso
 
 clean:
-	rm -f *.o *.mod *.smod test *.so
+	rm -f *.o *.mod *.smod test *.so ftest ctest
