@@ -1,3 +1,5 @@
+VPATH=../src
+
 # Compilers
 FC=gfortran
 CC=g++
