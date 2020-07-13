@@ -1,6 +1,6 @@
 # pyDave
 
-This is the python version of the dave library (originally written in fortran)
+This package contains the python bindings of a basic library written in fortran.
 
 ## To upload to TestPyPI
 1. Copy the shared object library to `libs` folder
