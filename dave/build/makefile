@@ -1,4 +1,5 @@
 VPATH=../src
+BINDIR=../bin
 
 # Compilers
 FC=gfortran
@@ -37,14 +38,17 @@ lib: $(LIB)
 #-- Compile fortran source into a shared object (.so) library
 $(LIB): libdave.o
 	$(FC) $(LIBFLAGS) $(LDFLAGS) $(FFLAGS) $< -o $@
+	cp $@ $(BINDIR)/.
 
 #-- Compile a fortran test executable from the shared object
 ftest: lib ftest.o
 	$(FC) $(FFLAGS) $(LDFLAGS) $(LIB) ftest.o -o $@
+	cp $@ $(BINDIR)/.
 
 #-- Compile a c++ test executable from the shared object
 ctest: lib ctest.o
 	$(CC) $(CFLAGS) $(LDFLAGS) -l$(LIBNAME) -L. ctest.o -o $@
+	cp $@ $(BINDIR)/.
 
 tests: ftest ctest
 
