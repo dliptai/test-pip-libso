@@ -8,7 +8,7 @@ Build the fortran library
 """
 subprocess.call(['make', 'clean'], cwd='../dave')
 subprocess.call(['make', 'lib'], cwd='../dave')
-subprocess.call(['cp', '../dave/libdave.so', 'pydave/libs/.'])
+subprocess.call(['cp', '../dave/libdave.so', 'src/libs/.'])
 
 """
 Declare binary wheels as 'non-pure'.
@@ -47,6 +47,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     # url="https://github.com/pypa/sampleproject",
     packages     = ["pydave"],
+    package_dir  = {"pydave" : "src"},
     package_data = {"pydave" : ["libs/*.so*"]},
     classifiers  = ["Programming Language :: Python :: 3",],
     python_requires='>=3.6',
