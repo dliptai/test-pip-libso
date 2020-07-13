@@ -2,17 +2,13 @@ import subprocess
 import setuptools
 from setuptools.dist import Distribution
 from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
-from pathlib import Path
 
 """
 Build the fortran library
 """
-libso = "libdave.so"
-cwd = Path.cwd()
-code_dir = cwd.parent
-subprocess.call(['make', 'clean'], cwd=code_dir)
-subprocess.call(['make', 'lib'], cwd=code_dir)
-subprocess.call(['cp', code_dir/'bin'/libso, cwd/'src'/'libs'/libso])
+subprocess.call(['make', 'clean'], cwd='../')
+subprocess.call(['make', 'lib'], cwd='../')
+subprocess.call(['cp', '../bin/libdave.so', './src/libs/.'])
 
 """
 Declare binary wheels as 'non-pure'.
