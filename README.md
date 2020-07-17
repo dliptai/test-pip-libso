@@ -39,10 +39,10 @@ python setup.py bdist_wheel
 Note that this will automatically build the fortran library and copy the .so file into the correct location, however it will not "audit" or "delocate" the wheel (i.e. copy in and relink any non-standard external libraries that are dependencies).
 
 ### Manual build + audit/delocate
-The script `pydave/build-wheels.sh` will build and audit the wheel for you. However you must run this within the `pydave` directory, and provide the current platform as an environment variable
+The script `pydave/build-wheels.sh` will build and audit the wheel for you. However you must run this within the `pydave` directory.
 ```
 cd pydave
-PLAT=macosx_10_9_x86_6 ./build-wheels.sh
+./build-wheels.sh
 ```
 This will create two wheels,
 ```
