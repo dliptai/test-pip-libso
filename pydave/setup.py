@@ -4,13 +4,12 @@ from setuptools.command.install import install
 from wheel.bdist_wheel import bdist_wheel
 import inspect
 
-
 def build(src_dir='../'):
-    print("\n>>>> Building fortran source in directory: ",src_dir)
+    print("\n>>> Building fortran source in directory: ",src_dir, flush=True)
     subprocess.call(['make', 'clean'], cwd=src_dir)
     subprocess.call(['make', 'lib'], cwd=src_dir)
     subprocess.call(['cp', src_dir+'bin/libdave.so', './src/libs/.'])
-    print("<<<< Finished build fortran source.\n")
+    print("<<< Finished building fortran source.\n", flush=True)
 
 """
 Build the fortran library first, then do regular run()
@@ -29,6 +28,7 @@ class custom_install(install):
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+print('\n>>>>> running setup.py >>>>>', flush=True)
 setuptools.setup(
     name             = "pydave",
     version          = "0.0.8",
@@ -49,3 +49,4 @@ setuptools.setup(
         'bdist_wheel': custom_bdist_wheel
         },
 )
+print('<<<<< end running setup.py <<<<<\n', flush=True)
