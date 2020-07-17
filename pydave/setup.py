@@ -31,13 +31,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name             = "pydave",
-    version          = "0.0.7",
+    version          = "0.0.8",
     author           = "David Liptai",
     author_email     = "dliptai@swin.edu.au",
     description      = "A python wrapper for the 'dave' library",
     long_description = long_description,
     long_description_content_type="text/markdown",
-    # url="https://github.com/pypa/sampleproject",
+    url="https://github.com/dliptai/test-pip-libso",
     packages     = ["pydave"],
     package_dir  = {"pydave" : "src"},
     package_data={"pydave": ["libs/*.so*", "libs/*.dylib*"]},
