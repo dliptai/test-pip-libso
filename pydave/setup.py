@@ -4,31 +4,10 @@ from setuptools.dist import Distribution
 from wheel.bdist_wheel import bdist_wheel
 
 """
-Declare binary wheels as 'non-pure'.
-
-This forces all package tags to be set. But our package is only
-non-pure because of the dynamically loaded fortran library,
-which is compiled seperately, and thus depends on the platform.
-The package does not depend on any specific version of CPython.
-
-Thus we remove the abi tag, and set the python tag to the major
-version of python being used (i.e. py3)
+Build the fortran library first, then do regular run()
 """
-class BinaryDistribution(Distribution):
-    def is_pure(self):
-        return False
-
 class custom_bdist_wheel(bdist_wheel):
-    def get_tag(self):
-        python, abi, plat = bdist_wheel.get_tag(self)
-        # We don't use CPython
-        python, abi, plat = self.python_tag, 'none', self.plat_name
-        return python, abi, plat
-
     def run(self):
-        """
-        Build the fortran library first, then do regular run()
-        """
         subprocess.call(['make', 'clean'], cwd='../')
         subprocess.call(['make', 'lib'], cwd='../')
         subprocess.call(['cp', '../bin/libdave.so', './src/libs/.'])
@@ -53,5 +32,4 @@ setuptools.setup(
     classifiers  = ["Programming Language :: Python :: 3",],
     python_requires='>=3.6',
     cmdclass={'bdist_wheel': custom_bdist_wheel},
-    distclass=BinaryDistribution
 )
