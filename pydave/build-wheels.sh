@@ -31,11 +31,11 @@ else
 fi
 
 # Set directories for dirty and fixed wheels
-DIST_DIR=wheels
-WHEELHOUSE=wheels_fixed
+BAD_WHEELS=.tmpwheelhouse
+WHEELHOUSE=wheelhouse
 
 # Clean out any old wheels in the dirty wheels folder
-rm ${DIST_DIR}/*.whl || true
+rm ${BAD_WHEELS}/*.whl || true
 
 # Compile wheels
 for PYTHON in $PYTHONS; do
@@ -43,11 +43,11 @@ for PYTHON in $PYTHONS; do
   ${PYTHON} setup.py clean --all
   rm src/libs/*.so || true
   # Create wheel
-  ${PYTHON} setup.py bdist_wheel --plat-name ${PLAT} --dist-dir ${DIST_DIR}
+  ${PYTHON} setup.py bdist_wheel --plat-name ${PLAT} --dist-dir ${BAD_WHEELS}
 done
 
 # Delocate wheels (remove external lib dependencies by including relevant libs in wheel)
 # Note: these tools also relink libraries for you by modifying their ELFs
-for whl in ${DIST_DIR}/*.whl; do
+for whl in ${BAD_WHEELS}/*.whl; do
   ${DELOCATE_TOOL} -L ${LIB_DIR} -w ${WHEELHOUSE} ${whl}
 done
