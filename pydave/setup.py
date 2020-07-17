@@ -1,17 +1,29 @@
 import subprocess
 import setuptools
-from setuptools.dist import Distribution
 from setuptools.command.install import install
 from wheel.bdist_wheel import bdist_wheel
+import inspect
+
+
+def build(src_dir='../'):
+    print("\n>>>> Building fortran source in directory: ",src_dir)
+    subprocess.call(['make', 'clean'], cwd=src_dir)
+    subprocess.call(['make', 'lib'], cwd=src_dir)
+    subprocess.call(['cp', src_dir+'bin/libdave.so', './src/libs/.'])
+    print("<<<< Finished build fortran source.\n")
 
 """
 Build the fortran library first, then do regular run()
 """
+class custom_bdist_wheel(bdist_wheel):
+     def run(self):
+        build()
+        bdist_wheel.run(self)
+
 class custom_install(install):
     def run(self):
-        subprocess.call(['make', 'clean'], cwd='../')
-        subprocess.call(['make', 'lib'], cwd='../')
-        subprocess.call(['cp', '../bin/libdave.so', './src/libs/.'])
+        # Don't recompile if bdist_wheels was already run
+        if self._called_from_setup(inspect.currentframe()): build()
         install.run(self)
 
 with open("README.md", "r") as fh:
@@ -32,5 +44,8 @@ setuptools.setup(
     include_package_data = True,
     classifiers  = ["Programming Language :: Python :: 3",],
     python_requires='>=3.6',
-    cmdclass={'install': custom_install},
+    cmdclass={
+        'install': custom_install,
+        'bdist_wheel': custom_bdist_wheel
+        },
 )
