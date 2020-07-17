@@ -1,17 +1,18 @@
 import subprocess
 import setuptools
 from setuptools.dist import Distribution
+from setuptools.command.install import install
 from wheel.bdist_wheel import bdist_wheel
 
 """
 Build the fortran library first, then do regular run()
 """
-class custom_bdist_wheel(bdist_wheel):
+class custom_install(install):
     def run(self):
         subprocess.call(['make', 'clean'], cwd='../')
         subprocess.call(['make', 'lib'], cwd='../')
         subprocess.call(['cp', '../bin/libdave.so', './src/libs/.'])
-        bdist_wheel.run(self)
+        install.run(self)
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -31,5 +32,5 @@ setuptools.setup(
     include_package_data = True,
     classifiers  = ["Programming Language :: Python :: 3",],
     python_requires='>=3.6',
-    cmdclass={'bdist_wheel': custom_bdist_wheel},
+    cmdclass={'install': custom_install},
 )
