@@ -23,7 +23,7 @@ OS=$(uname -s)
 # (within the package) to copy the external libraries to,
 # depending on the system.
 if [ "${OS}" == "Darwin" ]; then
-  DELOCATE_TOOL='delocate-wheel'
+  DELOCATE_TOOL='delocate-wheel -v'
   LIB_DIR=libs/.dylibs
 else
   DELOCATE_TOOL='auditwheel repair'
