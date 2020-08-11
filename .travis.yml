@@ -24,9 +24,10 @@ jobs:
   include:
     - name: MacOS build
       os: osx
-      language: python
+      language: minimal
       install:
         - pip install delocate
+        # - brew install gfortran
       script:
         - cd pydave; ./build-wheels.sh
 
