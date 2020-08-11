@@ -1,4 +1,4 @@
-#!/bin/bash -ev
+#!/bin/bash -e
 
 # If MANYLINUX is not set, assume no
 if [ -z "$MANYLINUX" ]; then
