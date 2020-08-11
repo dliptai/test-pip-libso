@@ -43,12 +43,12 @@ $(LIB): libdave.o
 
 #-- Compile a fortran test executable from the shared object
 ftest: lib ftest.o
-	$(FC) $(FFLAGS) $(LDFLAGS) $(LIB) ftest.o -o $@
+	$(FC) $(FFLAGS) ftest.o $(LDFLAGS) $(LIB) -o $@
 	cp $@ $(BINDIR)/.
 
 #-- Compile a c++ test executable from the shared object
 ctest: lib ctest.o
-	$(CC) $(CFLAGS) $(LDFLAGS) -l$(LIBNAME) -L. ctest.o -o $@
+	$(CC) $(CFLAGS) ctest.o $(LDFLAGS) -l$(LIBNAME) -L. -o $@
 	cp $@ $(BINDIR)/.
 
 tests: ftest ctest
