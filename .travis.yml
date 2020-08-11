@@ -3,43 +3,31 @@ notifications:
 
 # if: tag IS present
 
-matrix:
+jobs:
   include:
 
   # manylinux1 builds
-  - name: manylinux1_x86_64
+  - name: manylinux1
     services:
       - docker
     env:
       - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
-  - name: manylinux1_i686
-    services:
-      - docker
-    env:
       - DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
 
   # manylinux2010 builds
-  - name: manylinux2010_x86_64
+  - name: manylinux2010
     services:
       - docker
     env:
       - DOCKER_IMAGE=quay.io/pypa/manylinux2010_x86_64
-  - name: manylinux2010_i686
-    services:
-      - docker
-    env:
       - DOCKER_IMAGE=quay.io/pypa/manylinux2010_i686
 
   # manylinux2014 builds
-  - name: manylinux2014_x86_64
+  - name: manylinux2014
     services:
       - docker
     env:
       - DOCKER_IMAGE=quay.io/pypa/manylinux2014_x86_64
-  - name: manylinux2014_i686
-    services:
-      - docker
-    env:
       - DOCKER_IMAGE=quay.io/pypa/manylinux2014_i686
 
 install:
