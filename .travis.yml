@@ -1,6 +1,6 @@
 notifications:
   email: false
-if: tag IS present
+# if: tag IS present
 matrix:
   include:
   - name: manylinux1_x86_64
