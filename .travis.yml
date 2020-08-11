@@ -28,15 +28,19 @@ jobs:
       os: osx
       language: generic
       install:
-        - pip install delocate
+        - pip3 install delocate
         # - brew install gfortran
       script:
         - echo $PWD
         - which -a gfortran
+        - gfortran --version
         - which -a pip
         - which -a pip3
         - which -a python
         - which -a python3
+        - /usr/local/bin/python --version
+        - /usr/bin/python --version
+        - python3 --version
         - cd pydave; ./build-wheels.sh
         - echo $PWD
         - ls pydave/wheelhouse/
