@@ -17,10 +17,8 @@ env:
 install:
   - docker pull $DOCKER_IMAGE
 script:
-  - echo $PWD
-  - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
-  - echo $PWD
-  - ls pydave/wheelhouse/
+  - echo $PWD; docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
+  - echo $PWD; ls pydave/wheelhouse/
 
 jobs:
   include:
@@ -31,7 +29,5 @@ jobs:
         - pip3 install delocate
         - ln -f -s $(which python3) $(which python)
       script:
-        - echo $PWD
-        - cd pydave; ./build-wheels.sh
-        - echo $PWD
-        - ls pydave/wheelhouse/
+        - echo $PWD; cd pydave; ./build-wheels.sh
+        - echo $PWD; ls wheelhouse/
