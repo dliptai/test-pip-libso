@@ -3,6 +3,8 @@ notifications:
 
 # if: tag IS present
 
+os: osx
+
 services:
   - docker
 env:
@@ -18,4 +20,6 @@ install:
 
 script:
   - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
+
+after_script:
   - ls pydave/wheelhouse/
