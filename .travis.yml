@@ -3,28 +3,28 @@ notifications:
 
 # if: tag IS present
 
+os: linux
+language: minimal
+services:
+  - docker
+env:
+  - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
+  - DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
+  - DOCKER_IMAGE=quay.io/pypa/manylinux2010_x86_64
+  - DOCKER_IMAGE=quay.io/pypa/manylinux2010_i686
+  - DOCKER_IMAGE=quay.io/pypa/manylinux2014_x86_64
+  - DOCKER_IMAGE=quay.io/pypa/manylinux2014_i686
+install:
+  - docker pull $DOCKER_IMAGE
+script:
+  - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
+
+after_script:
+  - ls pydave/wheelhouse/
+
 jobs:
   include:
-    - name: manylinux builds
-      os: linux
-      services:
-        - docker
-      env:
-        - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
-        - DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
-        - DOCKER_IMAGE=quay.io/pypa/manylinux2010_x86_64
-        - DOCKER_IMAGE=quay.io/pypa/manylinux2010_i686
-        - DOCKER_IMAGE=quay.io/pypa/manylinux2014_x86_64
-        - DOCKER_IMAGE=quay.io/pypa/manylinux2014_i686
-      install:
-        - docker pull $DOCKER_IMAGE
-      script:
-        - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
-
-      after_script:
-        - ls pydave/wheelhouse/
-
     - name: MacOS build
       os: osx
       script:
-        - echo $PWD
+        - cd pydave; ./build-wheels.sh
