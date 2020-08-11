@@ -26,9 +26,10 @@ jobs:
     - name: MacOS build
       os: osx
       language: generic
+      env:
       install:
         - pip3 install delocate
-        - ln -f -s $(which python3) $(which python)
+        - ln -f -s $(which python3) $(which python) # force re-link python to python3
       script:
         - cd pydave; echo "Current working directory:" $PWD;
         - ./build-wheels.sh
