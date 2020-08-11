@@ -18,4 +18,4 @@ install:
   - docker pull $DOCKER_IMAGE
 script:
   - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
-  - ls wheelhouse/
+  - ls pydave/wheelhouse/
