@@ -32,6 +32,11 @@ jobs:
         # - brew install gfortran
       script:
         - echo $PWD
+        - which -a gfortran
+        - which -a pip
+        - which -a pip3
+        - which -a python
+        - which -a python3
         - cd pydave; ./build-wheels.sh
         - echo $PWD
         - ls pydave/wheelhouse/
