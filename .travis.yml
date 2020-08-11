@@ -17,14 +17,17 @@ env:
 install:
   - docker pull $DOCKER_IMAGE
 script:
+  - echo $PWD
   - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
-
-after_script:
-  - ls pydave/wheelhouse/
 
 jobs:
   include:
     - name: MacOS build
       os: osx
+      install:
+        - echo $PWD
       script:
         - cd pydave; ./build-wheels.sh
+
+after_script:
+  - ls pydave/wheelhouse/
