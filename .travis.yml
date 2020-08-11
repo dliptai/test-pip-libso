@@ -24,10 +24,12 @@ jobs:
   include:
     - name: MacOS build
       os: osx
+      language: python
       install:
-        - echo $PWD
+        - pip install delocate
       script:
         - cd pydave; ./build-wheels.sh
 
 after_script:
+  - echo $PWD
   - ls pydave/wheelhouse/
