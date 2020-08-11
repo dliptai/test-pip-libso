@@ -19,18 +19,19 @@ install:
 script:
   - echo $PWD
   - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
+  - echo $PWD
+  - ls pydave/wheelhouse/
 
 jobs:
   include:
     - name: MacOS build
       os: osx
-      language: minimal
+      language: generic
       install:
         - pip install delocate
         # - brew install gfortran
       script:
+        - echo $PWD
         - cd pydave; ./build-wheels.sh
-
-after_script:
-  - echo $PWD
-  - ls pydave/wheelhouse/
+        - echo $PWD
+        - ls pydave/wheelhouse/
