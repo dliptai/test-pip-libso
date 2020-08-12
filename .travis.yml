@@ -20,12 +20,13 @@ script:
   - echo "Current working directory:" $PWD
   - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
   - ls pydave/wheelhouse/
+  - df -h
 
 jobs:
   include:
     - name: MacOS build
       os: osx
-      language: generic
+      language: minimal
       env:
       install:
         - pip3 install delocate
