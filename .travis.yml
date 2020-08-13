@@ -23,13 +23,14 @@ env:
     - DOCKER_IMAGE=quay.io/pypa/manylinux2014_i686
 
 install:
+  - which -a python python3 pip pip3
+  - pip install twine
   - docker pull $DOCKER_IMAGE
-  - pip3 install twine
 script:
   - echo "Current working directory:" $PWD
-  - ./pydave/twine-upload.sh
   - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
   - ls pydave/wheelhouse/
+  - ./pydave/twine-upload.sh
 
 jobs:
   include:
@@ -43,6 +44,6 @@ jobs:
         - ln -f -s $(which python3) $(which python) # force re-link python to python3
       script:
         - cd pydave; echo "Current working directory:" $PWD;
-        - ./twine-upload.sh
         - ./build-wheels.sh
         - ls wheelhouse/
+        - ./twine-upload.sh
