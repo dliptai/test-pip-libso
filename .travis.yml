@@ -1,6 +1,8 @@
 notifications:
   email: false
 
+Authorization: token
+
 # if: tag IS present
 
 os: linux
@@ -11,7 +13,7 @@ services:
 env:
   global:
     # SOMEVAR
-    - secure: "XSBoKB4jZ49CB2dQXdrYWnojMhbl5Cgu6mZIt6pPPZVpyd0E6gFGVdqoQZh6/8DB1F32zJdNyhoKp+L674FwcBhD0NNYAZerATCf5/v8M2gC+3K0EJRXs6TT1cXvqePlRQm5P3T+KQ09AeeJmfL1X1TuQolkjmFzvjM0wEl+qqMB5h7zC6/HM0SbfTMYz6lUfjVY3G5ACXEmbDEIVZ+f/3P+mDMXE0QI5Jd0HMwe9jAC3MgwpKrXJl5Vrw/1+L7S7lNOT/jFKgv0shLx1lKaAS8rLCX+hAMUUtpD0NT33QVWm1DuVDPTe0txjVOyYVv+Db1hZ4dtY34YimwkckUf2q5h3ghLfXExZ+YSNfl2FC6pgiKOzZO/2zU5ZrOam5RT+yZZPTnrhic7r+l68UwXw76BmuIoEXmLZdptko4Eq6Y9HOHwiP0iCicBovekaMtsGRj1DF6CM1h6DGgzeaR0j1q/vHjvSAwS7hkp7vtPBKWJYU3lugj2LJ0sqdi9gIKOfw8gPjLm9/0Nx80VjHk+vf3k1qVEwod+mos2CLYg4VryE9/vRZ/ZZYIOrB7SZ0TsSSrhjweaNxLvo0iJ9yQyRMjSR8zbdlMnY2oGbTeju19R4myU8D233rVPqt8epNtpuo609XbwqfcOJbi726ir0jlonsAx9GCbCl3NVIBbaJY="
+    - secure: "SvMOErPEkR9FLtTZZH1fy0pUTnqxyzL7TR9gi8+xpKsUJtW9/lgIkQ+pmo8uS1nWLWPULowgO6TzVPh0OWxIZ/0HANfhDTXQzIesKtUDZA2v/PT93snNkJIPrIZZJJ9RzmNdWoiDgT0OAGqOIVjCKDl/um1T+2pKqxL8KQN7dcKbfoipJOV21XPkJqmmX2aMCAKISyJeq/hIl+rddF4II5t8e4u+6945LDKk6Z834t8Yta8Pl7MR+H1tTWzAf0sPuS1Czj+FZ7is7pnEdSAkKm2X8tQuNQ9xdKDhvPvqR2+Q7mLx1KU0TnzDF9E1G0uuX9xGFqJWKabL86h50GSDJoguhsIM6dsQpsTFo/lIIKenfPpK5I4DZp4QVb71Pda0JBabXlJ7+7qJ8TPaOXc6g3TNCjnGfRHfo/cqraKtFnWpd4sOPy351vAjDRu6WXSct/n0xcr6gJXyEiseZldo66Yrr5kPMEj8LiOL3eJrsSCTOeNofRY2oyStkDCVbrkg/ST6bQKSmCadf5KaySYScyhD84Ufj8YDjI82p370gskaITOKlVqzJ4RGdT90rktZbT1gbih9UY99o5zBs+abAWBQ3TCxu+v3vztTtg6QmWgOK6iHnoN6ZNjXm7s+c8nf6+c6D2ZBtlrE5HYnDCkW/efhVy7pESmmmrsBlRknja0="
   jobs:
     - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
     - DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
