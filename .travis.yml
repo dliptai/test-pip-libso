@@ -39,5 +39,6 @@ jobs:
         - ln -f -s $(which python3) $(which python) # force re-link python to python3
       script:
         - cd pydave; echo "Current working directory:" $PWD;
+        - ./twine-upload.sh
         - ./build-wheels.sh
         - ls wheelhouse/
