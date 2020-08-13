@@ -4,8 +4,7 @@ notifications:
 # if: tag IS present
 
 os: linux
-language: python
-python: "3.6"
+language: minimal
 services:
   - docker
 
@@ -22,6 +21,7 @@ env:
     - DOCKER_IMAGE=quay.io/pypa/manylinux2014_i686
 
 install:
+  - source ~/virtualenv/python3.6/bin/activate
   # - pip install twine
   # - docker pull $DOCKER_IMAGE
 script:
