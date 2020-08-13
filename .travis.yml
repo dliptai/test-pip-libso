@@ -5,6 +5,7 @@ notifications:
 
 os: linux
 language: minimal
+python: "3.6"
 services:
   - docker
 
@@ -21,9 +22,8 @@ env:
     - DOCKER_IMAGE=quay.io/pypa/manylinux2014_i686
 
 install:
-  - source ~/virtualenv/python3.6/bin/activate
-  # - pip install twine
-  # - docker pull $DOCKER_IMAGE
+  - pip install twine
+  - docker pull $DOCKER_IMAGE
 script:
   - which -a pip pip3 python python3
   - python --version
