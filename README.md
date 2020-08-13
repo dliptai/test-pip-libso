@@ -44,15 +44,11 @@ The script `pydave/build-wheels.sh` will build and audit the wheel for you. Howe
 cd pydave
 ./build-wheels.sh
 ```
-This will create two wheels,
+This will create the audited/delocated wheel inside `wheelhouse/`
 ```
-wheels:
-pydave-0.0.7-py3-none-macosx_10_9_x86_64.whl
-
-wheels_fixed:
+wheelhouse:
 pydave-0.0.7-py3-none-macosx_10_9_x86_64.whl
 ```
-where `wheels_fixed/` contains the audited/delocated wheel.
 
 ### Manylinux
 To build "manylinux" wheels, we use Docker. Just run this script
@@ -71,5 +67,5 @@ python setup.py install
 To uninstall `pip uninstall <package-name>`.
 
 ## TestPyPI
-1. To upload to TestPyPI `twine upload --repository testpypi wheels_fixed/*`
+1. To upload to TestPyPI `twine upload --repository testpypi wheelhouse/*`
 2. To install somewhere `pip install --index-url https://test.pypi.org/simple/ --no-deps <package-name>`
