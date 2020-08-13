@@ -3,11 +3,10 @@ notifications:
 
 # if: tag IS present
 
-os: linux
+dist: bionic
 language: python
 python: "3.6"
-services:
-  - docker
+services: docker
 
 env:
   global:
@@ -25,15 +24,10 @@ install:
   - pip install twine
   - docker pull $DOCKER_IMAGE
 script:
-  - which -a pip pip3 python python3
-  - python --version
-  - pip --version
-  - python3 --version
-  - pip3 --version
   - echo "Current working directory:" $PWD
   - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
-  - ls pydave/wheelhouse/
-  - ./pydave/twine-upload.sh
+  - cd pydave; ls wheelhouse/
+  - ./twine-upload.sh
 
 jobs:
   include:
