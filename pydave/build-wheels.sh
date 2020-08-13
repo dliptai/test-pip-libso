@@ -79,3 +79,9 @@ done
 
 # Delete the bad wheels folder
 rm -rf ${BAD_WHEELS} || true
+
+if [ "${SOMEVAR}" == "secretvalue" ]; then
+  echo "SUCCESS"
+else
+  echo ":("
+fi

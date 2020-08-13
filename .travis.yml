@@ -8,12 +8,15 @@ language: minimal
 services:
   - docker
 env:
+  matrix:
   - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
   - DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
   - DOCKER_IMAGE=quay.io/pypa/manylinux2010_x86_64
   - DOCKER_IMAGE=quay.io/pypa/manylinux2010_i686
   - DOCKER_IMAGE=quay.io/pypa/manylinux2014_x86_64
   - DOCKER_IMAGE=quay.io/pypa/manylinux2014_i686
+  global:
+    secure: EoPjbkDL7kLImYORSguLvJKbnKC+kKZJFGDmu+I0L32CDp+yMj4z04lY2B/BoNEebe2iwu6PJ/l45zLb/55RR3EecwkP6oSMaFV7Lca3NNmPBoRgqqySJmwAm6p/DKxZ0gAk5v9JAl+E5Ks8pLIRrhwuSQPxfJk/A5t/XLQjgs0vn0PU8qX1+Pb9RplxwIxcnSmQ70TTUXaL2kAxrLS0QxzMcrUgFvidZ2W7RM6uYArCDJHn5T0WNa88qVCaPt8VbVK2JZRumipC1ke6JhhKZ6udgzfKnHqWI1egGpqD0H2gA2zbQh/T/rpWBBh2N7zUzNgpTJvCZ6vRJCy85clmTXuKZJBvGD72iCFSInhZGnehWyki278YD2Fis1pPz4/L0c04R+9bDXCuO5XNpUImzicZNCKuuJ33qudsk3pmTzedU23cWC8eawykVVvAwaK8jXtWzr4mPnxaHSZcBHGDR0lVl+oupuszhrmKz6loBemAvTDS8gaBSM6+QtPv2Veg7axGbvWcEaMytPZGbVJix0CF2mzotPngG/EkBcijyiizWl9PSp7bkxJmHiaDKELRRjini6Jg/xqK6HBzxCnV4hLwSyhxvF0hZqGtrJY5Z8TtkKTZEbv2jKKNf52H7UDD/pbP2ev6Uo8IrxwOwN4rZE1LdqdBG1SMSY52XdYpKcQ=
 install:
   - docker pull $DOCKER_IMAGE
 script:
