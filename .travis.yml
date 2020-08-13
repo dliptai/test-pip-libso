@@ -1,12 +1,11 @@
 notifications:
   email: false
 
-Authorization: token
-
 # if: tag IS present
 
 os: linux
 language: minimal
+python: "3"
 services:
   - docker
 
@@ -26,6 +25,7 @@ install:
   - pip install twine
   - docker pull $DOCKER_IMAGE
 script:
+  - which -a pip pip3 python python3
   - echo "Current working directory:" $PWD
   - docker run --rm -e MANYLINUX=yes -v `pwd`:/io -w /io/pydave $DOCKER_IMAGE /io/pydave/build-wheels.sh
   - ls pydave/wheelhouse/
@@ -36,12 +36,14 @@ jobs:
     - name: MacOS build
       os: osx
       language: minimal
+      python: "3"
       env:
         -
       install:
         - pip3 install delocate twine
         - ln -f -s $(which python3) $(which python) # force re-link python to python3
       script:
+        - which -a pip pip3 python python3
         - cd pydave; echo "Current working directory:" $PWD;
         - ./build-wheels.sh
         - ls wheelhouse/
