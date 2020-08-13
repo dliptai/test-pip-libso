@@ -23,7 +23,6 @@ env:
     - DOCKER_IMAGE=quay.io/pypa/manylinux2014_i686
 
 install:
-  - which -a python python3 pip pip3
   - pip install twine
   - docker pull $DOCKER_IMAGE
 script:
