@@ -31,7 +31,7 @@ with open("README.md", "r") as fh:
 print('\n>>>>> running setup.py >>>>>', flush=True)
 setuptools.setup(
     name             = "pydave",
-    version          = "0.0.8",
+    version          = "0.0.8-1",
     author           = "David Liptai",
     author_email     = "dliptai@swin.edu.au",
     description      = "A python wrapper for the 'dave' library",
