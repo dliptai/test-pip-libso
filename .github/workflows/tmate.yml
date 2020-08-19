@@ -1,18 +1,6 @@
 name: CI
 on: [push]
 
-env:
-  OS_AUTH_URL: ${{ secrets.OS_AUTH_URL }}
-  OS_PASSWORD: ${{ secrets.OS_PASSWORD }}
-  OS_PROJECT_ID: ${{ secrets.OS_PROJECT_ID }}
-  OS_PROJECT_NAME: ${{ secrets.OS_PROJECT_NAME }}
-  OS_USERNAME: ${{ secrets.OS_USERNAME }}
-  OS_USER_DOMAIN_NAME: "Default"
-  OS_PROJECT_DOMAIN_ID: "default"
-  OS_REGION_NAME: "Melbourne"
-  OS_INTERFACE: public
-  OS_IDENTITY_API_VERSION: 3
-
 jobs:
   build:
     runs-on: ubuntu-latest
