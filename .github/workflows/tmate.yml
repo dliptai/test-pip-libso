@@ -12,4 +12,4 @@ jobs:
     #   uses: mxschmitt/action-tmate@v2
     - name: Testing if if works
       if: github.event_name == 'push' && contains(github.ref, 'release')
-      run: echo HEY
+      run: echo ${{ github.ref }}
